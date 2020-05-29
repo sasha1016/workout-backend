@@ -1,0 +1,83 @@
+POST http://localhost:3000/user/routines/addUserRoutine
+Content-Type: application/json
+
+{
+    "user":"5e97f7e4ed90401a58eca3ea",
+    "userId":"5e97f7e4ed90401a58eca3ea"
+}
+
+###
+
+GET http://localhost:3000/user/routines/get?user=5ec654c39de8f4189047bcfb
+# Content-Type: application/json
+
+# {
+#     "user":"5e97f7e4ed90401a58eca3ea"
+# }
+
+
+###
+
+
+GET http://localhost:3000/user/routines/getAll
+# Content-Type: application/json
+
+# {
+#     "user":"5e97f7e4ed90401a58eca3ea"
+# }
+
+
+###
+
+POST http://localhost:3000/user/routines/delete
+Content-Type: application/json
+
+{
+    "user":"5ec654c39de8f4189047bcfb", 
+    "day":"wednesday",
+    "routineId":"5ecd52808416ed0a7cd73e59",
+    "userProgramID":"5ecbe39a88fc67040c9dd308",
+    "populate":"program,userProgram"
+}
+
+###
+
+POST http://localhost:3000/user/routines/deleteRoutine
+Content-Type: application/json
+
+{
+    "user":"5e97f7a38b051721f816a2d3"
+}
+
+###
+
+POST http://localhost:3000/user/routines/testDaysSelected
+Content-Type: application/json
+
+{
+    "userProgramId":"5ec54ba4e9d8c828f4db5c36",
+    "daySelectedOfTheProgram":"monday"
+}
+
+###
+
+
+POST http://localhost:3000/user/routines/update
+Content-Type: application/json
+
+{    
+    "userId":"5e97f7e4ed90401a58eca3ea",
+    "day":"friday",
+    "routine":{
+        "programName":"Juggernaut Hypertrophy 4",
+        "userProgramId":"5e9d2fe17ee97d38c48b8238",
+        "toComplete":[
+            {
+                "name":"Bench",
+                "sets":[
+                    {"reps":10,"percentage":50}
+                ]
+            }
+        ]
+    }
+}

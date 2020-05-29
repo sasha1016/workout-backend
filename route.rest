@@ -1,0 +1,116 @@
+GET http://localhost:3000/programs/get
+
+###
+
+DELETE http://localhost:3000/programs/delete
+
+###
+
+GET http://localhost:3000/program/get/main/
+Content-Type: application/json
+
+
+{
+    "lift":"bench",
+    "keys":"name frequency"
+}
+
+
+###
+
+
+GET http://192.168.0.102:3000/program/get/main/
+Content-Type: application/json
+
+
+{
+    "lift":"bench",
+    "keys":"name frequency rating"
+}
+
+###
+
+POST http://192.168.0.102:3000/user/programs/add
+Content-Type: application/json
+
+{
+    "userId":"5e97f7e4ed90401a58eca3ea",
+    "programId":"5e9acabebca4e5333c467764",
+    "programName":"Juggernaut Hypertrophy 4",
+    "lift":"main",
+    "type":"strength",
+    "liftName":"squat",
+    "commenced":"2020-03-28",
+    "duration":12, 
+    "frequency":3, 
+    "weightFactor":"percentage"
+}
+
+###
+
+DELETE http://192.168.0.102:3000/user/programs/delete
+Content-Type: application/json
+
+{
+    "user":"5e97f7e4ed90401a58eca3ea"
+}
+
+###
+
+
+GET http://192.168.0.102:3000/user/programs/get?populate=user&userId=5e97f7e4ed90401a58eca3ea
+
+
+###
+
+
+POST http://localhost:3000/programs/add
+Content-Type: application/json
+
+{
+    "name": "Juggernaut Hypertrophy 4",
+    "lift":"access",
+    "muscleGroup":"biceps",
+    "type":"hypertrophy",
+    "weightFactor": "absolute",
+    "frequency": 3,
+    "duration":3,
+    "rating":4,
+    "days":[
+        {"name":"Friday",
+        "toComplete":{
+            "Pulldown":[{"reps":10,"weightFactor":50},{"reps":5,"weightFactor":80}]
+        }
+    }]
+}
+
+
+
+###
+POST http://localhost:3000/users/add 
+Content-Type: application/json
+
+{
+    "firstName":"Shashank",
+    "lastName":"Pradeep",
+    "email":"shashasadnk.me19@bmsce.ac.in"
+}
+
+
+###
+
+GET http://localhost:3000/users/get
+
+### 
+
+
+DELETE http://localhost:3000/users/deleteAll
+
+### 
+
+GET http://localhost:3000/user/routines/getAll
+# Content-Type: application/json
+
+# {
+#     "user":"5e97f7e4ed90401a58eca3ea"
+# }

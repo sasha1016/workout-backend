@@ -1,0 +1,9 @@
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "email":"sashacodesvdv@gmail.com",
+    "password":"testpassword",
+    "fname":"Shashank",
+    "lname":"Pradeep"
+}
