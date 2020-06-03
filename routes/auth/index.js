@@ -1,6 +1,5 @@
 const admin = require('../../config/firebaseAdmin.js'); 
 const express = require('express');
-const app = express() ;  
 const router = express.Router() ;
 
 const User = require('../../models/user/user.js')
@@ -26,7 +25,19 @@ router.post('/signup',async (req,res) => {
     .catch((error) => {
         res.status(501).send(error) ; 
     })
-}) 
+}) ;
+
+
+
+router.post('/getToken', async (req,res) => {
+    admin.auth().createCustomToken(req.body.uid)
+    .then((token) => {
+        res.status(200).send({token})
+    })
+    .catch((error) => {
+        res.send(500).send({message:error.message})  
+    })
+})
 
 
 module.exports = router ; 

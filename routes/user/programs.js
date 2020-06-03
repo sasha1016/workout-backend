@@ -56,13 +56,12 @@ router.post('/update/currentweek',verifyUser,async (req,res) => {
 // switch a user program 
 
 router.post('/switch',verifyUser,async (req,res) => {
-   var id = req.body.userProgramToSwitch ; 
-   var newProgram = req.body.newProgram ; 
-   console.log(util.inspect(req.body,{depth:null})) ; 
+   var id = req.body.programFrom ; 
+   var programTo = req.body.programTo ; 
 
    await UserProgram.findOneAndUpdate(
                                        {_id:id},
-                                       newProgram, 
+                                       programTo, 
                                        {new:true} , 
                                        (error,updatedUserProgram) => {
                                           if(error === null) {

@@ -10,9 +10,11 @@
   "author": "Shashank Pradeep",
   "license": "ISC",
   "dependencies": {
+    "errorhandler": "^1.5.1",
     "express": "^4.17.1",
     "firebase-admin": "^8.12.1",
-    "mongoose": "^5.9.7"
+    "mongoose": "^5.9.7",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
