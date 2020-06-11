@@ -24,14 +24,8 @@ const Schema = new mongoose.Schema({
 
 })
 
-// Schema.post('save',(next) => {
-//     // send firebase auth email 
-//     next() ; 
-// })
-
 Schema.post('save',async (doc,next) => {
-    console.log(doc) ; 
-    const userRoutine = new UserRoutine({user:doc._id,userId:doc._id}) ; 
+    const userRoutine = new UserRoutine({user:doc._id}) ; 
     try {
        await userRoutine.save() ; 
        next() ; 

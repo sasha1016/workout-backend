@@ -23,7 +23,7 @@ router.post('/signup',async (req,res) => {
         res.status(200).send(user); 
     })
     .catch((error) => {
-        res.status(501).send(error) ; 
+        res.status(501).send({message:error.message}) ; 
     })
 }) ;
 

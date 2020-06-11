@@ -35,7 +35,7 @@ router.get('/get', Middleware.verifyUser, async (req,res) => {
 
         await 
         UserRoutine
-        .findOne({user:req.query.user}, req.query.day)
+        .findOne({user:req.body.uid}, req.query.day)
         .populate({path:path})
         .exec((error,dayRoutine) => {
             if(error) {
@@ -48,7 +48,7 @@ router.get('/get', Middleware.verifyUser, async (req,res) => {
     } else {
         await 
         UserRoutine
-        .findOne({user:(req.query.user)})
+        .findOne({user:req.body.uid})
         .populate({
             path: req.query.populate ? createPopulateString(req.query.populate) : ""
         })

@@ -10,9 +10,9 @@ const util = require('util') ;
 
 // Getting all programs of the user 
 
-router.get('/get', verifyUser, async (req,res) => {
+router.get('/get', async (req,res) => {
 
-   await UserProgram.find({user:req.query.user}).populate(req.query.populate || "").exec((error,userPrograms) => {
+   await UserProgram.find({user:req.query.uid}).populate(req.query.populate || "").exec((error,userPrograms) => {
       if(error) {
          res.status(400).send(error.message) 
       } else { 
@@ -26,8 +26,11 @@ router.get('/get', verifyUser, async (req,res) => {
 
 //getting based on lift
 
-router.post('/add',verifyUser,async (req,res) => {
-   const userProgram = new UserProgram(req.body) ; 
+router.post('/add',async (req,res) => {
+   var program = req.body ; 
+   program.user = req.body.uid ; 
+   delete program.uid ; 
+   const userProgram = new UserProgram(program) ; 
    try {
       const addedUserProgram = await userProgram.save() ; 
       res.status(201).send(addedUserProgram) ; 
@@ -38,7 +41,7 @@ router.post('/add',verifyUser,async (req,res) => {
 
 // updting current week 
 
-router.post('/update/currentweek',verifyUser,async (req,res) => {
+router.post('/update/currentweek',async (req,res) => {
    UserProgram.findByIdAndUpdate(
       req.body.id,
       {$inc:{currentWeek:1}}, 
@@ -55,7 +58,7 @@ router.post('/update/currentweek',verifyUser,async (req,res) => {
 
 // switch a user program 
 
-router.post('/switch',verifyUser,async (req,res) => {
+router.post('/switch',async (req,res) => {
    var id = req.body.programFrom ; 
    var programTo = req.body.programTo ; 
 
@@ -74,17 +77,14 @@ router.post('/switch',verifyUser,async (req,res) => {
 }) ; 
 
 
-
-
-// deleting all posts 
-
-router.delete('/delete', async (req,res) => {
-   UserProgram.deleteMany({userId:req.body.user}, (error) => {
-      if(error) {
-         res.status(500).send("An error occured try again later") ; 
-      } else {
-         res.status(200).send("Deleted") ; 
-      }
+router.post('/end', (req,res) => {
+   console.log(req.body) ; 
+   UserProgram.findByIdAndDelete(req.body.id)
+   .then(() => {
+      res.status(201).send(true)
+   })
+   .catch((error) => {
+      res.status(501).send({message:error.message})
    })
 })
 

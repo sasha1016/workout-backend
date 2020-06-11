@@ -57,7 +57,12 @@ const Schema = new mongoose.Schema({
     daysSelectedOfTheProgram:[{
         type:daySelectedSchema,
         default:[]
-    }]
+    }],
+    ended:{
+        type:Boolean,
+        default:false,
+        required:false
+    }
 
 
 })

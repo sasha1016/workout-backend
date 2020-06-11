@@ -28,7 +28,7 @@ db.once('open', () => {}) ;
 app.use(express.json()) ; 
 
 function authenticate(req,res,next) {
-    if(req.path === '/auth') next() ; 
+    if(req.path.split(`/`)[1] === 'auth'){ next(); return false }; 
     verifyAuthToken(req,res,next) ; 
 }
 
